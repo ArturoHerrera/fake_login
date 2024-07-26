@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">FakeLogin</string>
+
+    <!-- Welcome Screen -->
+    <string name="welcome_tittle">¡Bienvenido!</string>
+    <string name="welcome_message">Alcanza tus metas financieras hoy mismo</string>
+    <string name="welcome_sign_up_button">Crea tu cuenta</string>
+    <string name="welcome_login_button">Inicia sesión</string>
+
 </resources>
