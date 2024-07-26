@@ -25,12 +25,13 @@ fun WelcomeHeader() {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 8.dp, vertical = 16.dp)
+                .padding(start = 8.dp, end = 8.dp, bottom = 32.dp, top = 56.dp)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.baubap_logo),
                 contentDescription = "",
-                colorFilter = ColorFilter.tint(Color.White)
+                colorFilter = ColorFilter.tint(Color.White),
+                modifier = Modifier.padding(bottom = 16.dp)
             )
 
             Image(
