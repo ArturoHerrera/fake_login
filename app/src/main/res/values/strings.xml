@@ -18,7 +18,7 @@
     <string name="sign_up_login_button">Inicia sesión</string>
 
     <!-- Login Screen -->
-    <string name="login_tittle">Crea tu cuenta</string>
+    <string name="login_tittle">Inicia sesión</string>
     <string name="login_not_remember_nip">¿Olvidaste tu NIP?</string>
     <string name="login_recover_nip_here">Recupéralo aquí</string>
     <string name="login_text_field_enter_curp_or_phone">Ingresa tu CURP o número celular</string>

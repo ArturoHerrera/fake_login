@@ -1,4 +1,4 @@
-package com.aherrera.fakelogin.ui.screen.signUp
+package com.aherrera.fakelogin.ui.screen.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -33,12 +33,12 @@ import com.aherrera.fakelogin.ui.theme.BaubapLightBackground
 import com.aherrera.fakelogin.ui.theme.BaubapPrimaryPurlple
 
 @Composable
-fun SignUpScreen() {
-    SignUpContent()
+fun LoginScreen() {
+    LoginContent()
 }
 
 @Composable
-private fun SignUpContent() {
+private fun LoginContent() {
     Scaffold(
         topBar = {
             FormTopBar(
@@ -54,7 +54,7 @@ private fun SignUpContent() {
                     .then(Modifier.padding(bottom = 24.dp, top = 64.dp, start = 8.dp, end = 8.dp))
             ) {
                 Text(
-                    text = stringResource(id = R.string.sign_up_tittle),
+                    text = stringResource(id = R.string.login_tittle),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
@@ -63,22 +63,22 @@ private fun SignUpContent() {
                     textAlign = TextAlign.Start
                 )
 
-                var phoneText by remember { mutableStateOf(TextFieldValue("")) }
+                var userCredential by remember { mutableStateOf(TextFieldValue("")) }
                 FormTextField(
-                    textFieldValue = phoneText,
-                    label = R.string.sign_up_text_field_phone
+                    textFieldValue = userCredential,
+                    label = R.string.login_text_field_enter_curp_or_phone
                 ) { newText ->
-                    phoneText = newText
+                    userCredential = newText
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                var curpText by remember { mutableStateOf(TextFieldValue("")) }
+                var userNip by remember { mutableStateOf(TextFieldValue("")) }
                 FormTextField(
-                    textFieldValue = curpText,
-                    label = R.string.sign_up_text_field_curp
+                    textFieldValue = userNip,
+                    label = R.string.login_text_field_enter_nip
                 ) { newText ->
-                    curpText = newText
+                    userNip = newText
                 }
 
                 Row(
@@ -89,13 +89,13 @@ private fun SignUpContent() {
                     horizontalArrangement = Arrangement.Start
                 ) {
                     Text(
-                        text = stringResource(id = R.string.sign_up_not_remember_curp),
+                        text = stringResource(id = R.string.login_not_remember_nip),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Normal,
                         textAlign = TextAlign.Start
                     )
                     Text(
-                        text = stringResource(id = R.string.sign_up_not_check_here),
+                        text = stringResource(id = R.string.login_recover_nip_here),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Normal,
                         textAlign = TextAlign.Start,
@@ -108,7 +108,7 @@ private fun SignUpContent() {
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Bottom
                 ) {
-                    ButtonFilled(text = R.string.sign_up_create_account_button) {
+                    ButtonFilled(text = R.string.login_button) {
 
                     }
 
@@ -120,13 +120,13 @@ private fun SignUpContent() {
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = stringResource(id = R.string.sign_up_already_account),
+                            text = stringResource(id = R.string.login_not_account),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Normal,
                             textAlign = TextAlign.Start
                         )
                         Text(
-                            text = stringResource(id = R.string.sign_up_create_account_button),
+                            text = stringResource(id = R.string.login_create_account_button),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Normal,
                             textAlign = TextAlign.Start,
@@ -142,6 +142,6 @@ private fun SignUpContent() {
 
 @Composable
 @Preview
-private fun SignUpContentPreview() {
-    SignUpContent()
+private fun SLoginContentPreview() {
+    LoginContent()
 }
