@@ -1,5 +1,6 @@
 package com.aherrera.fakelogin.ui.screen.signUp
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -33,17 +34,21 @@ import com.aherrera.fakelogin.ui.theme.BaubapLightBackground
 import com.aherrera.fakelogin.ui.theme.BaubapPrimaryPurlple
 
 @Composable
-fun SignUpScreen() {
-    SignUpContent()
+fun SignUpScreen(
+    goToWelcome: () -> Unit
+) {
+    BackHandler(true) { goToWelcome() }
+
+    SignUpContent(goToWelcome)
 }
 
 @Composable
-private fun SignUpContent() {
+private fun SignUpContent(
+    goToWelcome: () -> Unit = {},
+) {
     Scaffold(
         topBar = {
-            FormTopBar(
-                onClick = {}
-            )
+            FormTopBar(onClick = { goToWelcome() })
         },
         content = {
             Column(

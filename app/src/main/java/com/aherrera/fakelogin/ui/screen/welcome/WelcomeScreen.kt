@@ -23,13 +23,17 @@ import com.aherrera.fakelogin.ui.components.atoms.ButtonFilled
 import com.aherrera.fakelogin.ui.components.atoms.ButtonText
 
 @Composable
-fun WelcomeScreen() {
-    WelcomeContent()
+fun WelcomeScreen(
+    goToLogin: () -> Unit,
+    goToSignUp: () -> Unit,
+) {
+    WelcomeContent(goToLogin, goToSignUp)
 }
 
 @Composable
 private fun WelcomeContent(
-
+    goToLogin: () -> Unit = {},
+    goToSignUp: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -74,12 +78,12 @@ private fun WelcomeContent(
                 verticalArrangement = Arrangement.Center
             ) {
                 ButtonFilled(
-                    onClick = {},
+                    onClick = { goToSignUp() },
                     text = R.string.welcome_sign_up_button
                 )
 
                 ButtonText(
-                    onClick = {},
+                    onClick = { goToLogin() },
                     text = R.string.welcome_login_button
                 )
             }
