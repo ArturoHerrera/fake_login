@@ -11,4 +11,6 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val BaubapPrimaryPurlple = Color(0xFF965CFF)
+val BaubapTextFieldBackground = Color(0xFFF3F2F8)
+val BaubapLightBackground = Color(0xFFFFFEFE)
 

@@ -7,4 +7,24 @@
     <string name="welcome_sign_up_button">Crea tu cuenta</string>
     <string name="welcome_login_button">Inicia sesión</string>
 
+    <!-- SignUp Screen -->
+    <string name="sign_up_tittle">Crea tu cuenta</string>
+    <string name="sign_up_not_remember_curp">¿No recuerdas tu CURP?</string>
+    <string name="sign_up_not_check_here">Consúltala aquí</string>
+    <string name="sign_up_text_field_phone">Número celular a 10 dígitos</string>
+    <string name="sign_up_text_field_curp">CURP</string>
+    <string name="sign_up_create_account_button">Crea tu cuenta</string>
+    <string name="sign_up_already_account">¿Ya tienes una cuenta?</string>
+    <string name="sign_up_login_button">Inicia sesión</string>
+
+    <!-- Login Screen -->
+    <string name="login_tittle">Crea tu cuenta</string>
+    <string name="login_not_remember_nip">¿Olvidaste tu NIP?</string>
+    <string name="login_recover_nip_here">Recupéralo aquí</string>
+    <string name="login_text_field_enter_curp_or_phone">Ingresa tu CURP o número celular</string>
+    <string name="login_text_field_enter_nip">Ingresa NIP de acceso</string>
+    <string name="login_button">Inicia sesión</string>
+    <string name="login_not_account">¿No tienes cuenta?</string>
+    <string name="login_create_account_button">Crea nueva cuenta</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.aherrera.fakelogin.ui.screen.welcome
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,13 +24,7 @@ import com.aherrera.fakelogin.ui.components.atoms.ButtonText
 
 @Composable
 fun WelcomeScreen() {
-    Surface(
-        color = Color.White,
-        modifier = Modifier.fillMaxSize(),
-        content = {
-            WelcomeContent()
-        }
-    )
+    WelcomeContent()
 }
 
 @Composable
@@ -37,7 +32,9 @@ private fun WelcomeContent(
 
 ) {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
     ) {
         WelcomeHeader()
 
