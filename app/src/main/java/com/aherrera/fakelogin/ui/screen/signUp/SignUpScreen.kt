@@ -114,7 +114,7 @@ private fun SignUpContent() {
 
                     Row(
                         modifier = Modifier
-                            .padding(top = 24.dp, bottom = 40.dp)
+                            .padding(top = 16.dp, bottom = 8.dp)
                             .fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center
