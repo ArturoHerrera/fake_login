@@ -34,6 +34,7 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun FakeLoginTheme(
+    enableDarkMode: Boolean = false,
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
@@ -42,10 +43,9 @@ fun FakeLoginTheme(
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (enableDarkMode && darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-
-        darkTheme -> DarkColorScheme
+        //darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
 
