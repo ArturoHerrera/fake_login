@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">FakeLogin</string>
 
+
     <!-- Commons -->
     <string name="accept_button">Aceptar</string>
+
 
     <!-- Welcome Screen -->
     <string name="welcome_tittle">¡Bienvenido!</string>
     <string name="welcome_message">Alcanza tus metas financieras hoy mismo</string>
     <string name="welcome_sign_up_button">Crea tu cuenta</string>
     <string name="welcome_login_button">Inicia sesión</string>
+
 
     <!-- SignUp Screen -->
     <string name="sign_up_tittle">Crea tu cuenta</string>
@@ -32,5 +35,19 @@
     <string name="login_not_account">¿No tienes cuenta?</string>
     <string name="login_create_account_button">Crea nueva cuenta</string>
     <string name="login_error_curp">El CURP no está registrado o no coincide con una cuenta de Baubap, por favor ingresa el CURP con el que te registraste en Baubap.</string>
+
+
+    <!-- Api general error messages -->
+    <string name="lost_internet_connection">Verifica que tu teléfono tenga conexión a internet y vuelvelo a intentar. Si el problema sigue, contactanos.</string>
+    <string name="bad_request">Oh no… ¡Algo salió mal! Inténtalo otra vez en 5 minutos</string>
+    <string name="unauthorized">Oh no, parece que tu sesión ha expirado, inicia sesión de nuevo.</string>
+    <string name="forbidden">Oh no, parece que no tienes permiso para esto.</string>
+    <string name="not_found">¡Ups! No encontramos lo que buscabas, veamos qué pasa, inténtalo  de nuevo en otro momento.</string>
+    <string name="method_not_allowed">No encontramos lo que buscabas, por favor intenta de nuevo.</string>
+    <string name="internal_server_error">Algo ocurrio mientras buscabamos lo que necesitabas, por favor intenta más tarde cuando lo hayamos solucionado.</string>
+    <string name="bad_gateway">Ha ocurrido un problema, estamos buscando lo que paso, intenta más tarde.</string>
+    <string name="service_unavailable">Estamos mejorando nuestros servicios, por favor vuelve más tarde.</string>
+    <string name="timeout">¡Ups! Hemos rebasado el tiempo de espera, intentalo de nuevo.</string>
+    <string name="general_error_message">Ha ocurrido un problema, estamos viendo lo que sucedio, vuelve más tarde.</string>
 
 </resources>

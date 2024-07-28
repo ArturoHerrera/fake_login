@@ -22,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -100,24 +99,24 @@ private fun SignUpContent(
                     textAlign = TextAlign.Start
                 )
 
-                var phoneText by remember { mutableStateOf(TextFieldValue("")) }
+                var phoneText by remember { mutableStateOf("") }
                 FormTextField(
                     textFieldValue = phoneText,
                     label = R.string.sign_up_text_field_phone
                 ) { newText ->
                     phoneText = newText
-                    onWriteUser(phoneText.text)
+                    onWriteUser(phoneText)
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                var curpText by remember { mutableStateOf(TextFieldValue("")) }
+                var curpText by remember { mutableStateOf("") }
                 FormTextField(
                     textFieldValue = curpText,
                     label = R.string.sign_up_text_field_curp
                 ) { newText ->
                     curpText = newText
-                    onWritePass(curpText.text)
+                    onWritePass(curpText)
                 }
 
                 Row(

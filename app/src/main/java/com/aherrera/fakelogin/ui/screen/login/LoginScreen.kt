@@ -22,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -57,7 +56,7 @@ fun LoginScreen(
             viewModel.checkInputsAndEnableButton()
         },
         onClickLoginButton = {
-            viewModel.showLoginAlert()
+            viewModel.login()
         },
     )
 
@@ -101,24 +100,24 @@ private fun LoginContent(
                     textAlign = TextAlign.Start
                 )
 
-                var userCredential by remember { mutableStateOf(TextFieldValue("")) }
+                var userCredential by remember { mutableStateOf("") }
                 FormTextField(
                     textFieldValue = userCredential,
                     label = R.string.login_text_field_enter_curp_or_phone
                 ) { newText ->
                     userCredential = newText
-                    onWriteUser(userCredential.text)
+                    onWriteUser(userCredential)
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                var userNip by remember { mutableStateOf(TextFieldValue("")) }
+                var userNip by remember { mutableStateOf("") }
                 FormTextField(
                     textFieldValue = userNip,
                     label = R.string.login_text_field_enter_nip
                 ) { newText ->
                     userNip = newText
-                    onWritePass(userNip.text)
+                    onWritePass(userNip)
                 }
 
                 Row(
