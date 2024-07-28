@@ -166,7 +166,7 @@ private fun SignUpContent(
                             textAlign = TextAlign.Start
                         )
                         Text(
-                            text = stringResource(id = R.string.sign_up_create_account_button),
+                            text = stringResource(id = R.string.sign_up_login_button),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Normal,
                             textAlign = TextAlign.Start,
