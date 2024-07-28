@@ -7,6 +7,7 @@ data class LoginUiState(
     val pass: String? = null,
     val enableLoginButton: Boolean = false,
     val alertIsVisible: Boolean = false,
+    val alertSuccessIsVisible: Boolean = false,
     val userDetails: UserDetails? = null,
     val isBusy: Boolean = false
 )

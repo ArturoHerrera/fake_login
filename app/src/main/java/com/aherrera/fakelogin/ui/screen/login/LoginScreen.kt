@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aherrera.fakelogin.R
 import com.aherrera.fakelogin.ui.components.FormTopBar
+import com.aherrera.fakelogin.ui.components.LoginSuccessAlert
 import com.aherrera.fakelogin.ui.components.NativeAlertDialog
 import com.aherrera.fakelogin.ui.components.atoms.ButtonFilled
 import com.aherrera.fakelogin.ui.components.atoms.FormTextField
@@ -67,6 +68,16 @@ fun LoginScreen(
             message = R.string.login_error_curp,
             confirmButtonAction = { viewModel.hideLoginAlert() }
         )
+    }
+
+    if (uiState.alertSuccessIsVisible) {
+        uiState.userDetails?.let { safeUserDetails ->
+            LoginSuccessAlert(
+                userDetails = safeUserDetails,
+                onDismissRequest = { viewModel.hideLoginSuccessAlert() },
+                confirmButtonAction = { viewModel.hideLoginSuccessAlert() }
+            )
+        }
     }
 }
 

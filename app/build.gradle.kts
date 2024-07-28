@@ -83,4 +83,7 @@ dependencies {
 
     //- Serializer
     implementation(libs.gson)
+
+    //- Image loader
+    implementation(libs.image.loader.coil)
 }

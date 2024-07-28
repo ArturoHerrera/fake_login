@@ -37,6 +37,10 @@
     <string name="login_error_curp">El CURP no está registrado o no coincide con una cuenta de Baubap, por favor ingresa el CURP con el que te registraste en Baubap.</string>
 
 
+    <!-- Login Success Alert -->
+    <string name="login_alert_tittle">Bienvenido</string>
+
+
     <!-- Api general error messages -->
     <string name="lost_internet_connection">Verifica que tu teléfono tenga conexión a internet y vuelvelo a intentar. Si el problema sigue, contactanos.</string>
     <string name="bad_request">Oh no… ¡Algo salió mal! Inténtalo otra vez en 5 minutos</string>

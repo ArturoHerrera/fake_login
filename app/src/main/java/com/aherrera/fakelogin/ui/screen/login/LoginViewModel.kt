@@ -57,6 +57,7 @@ class LoginViewModel @Inject constructor(
                             is DataState.Success -> {
                                 setUserDetails(result.data)
                                 setIsBusy(false)
+                                showLoginSuccesAlert()
                             }
 
                             else -> Unit
@@ -90,7 +91,7 @@ class LoginViewModel @Inject constructor(
         vmUiState.update { it.copy(enableLoginButton = canEnableButton) }
     }
 
-    fun showLoginAlert() {
+    private fun showLoginAlert() {
         vmUiState.update { it.copy(alertIsVisible = true) }
     }
 
@@ -100,6 +101,14 @@ class LoginViewModel @Inject constructor(
 
     private fun setUserDetails(userDetails: UserDetails) {
         vmUiState.update { it.copy(userDetails = userDetails) }
+    }
+
+    private fun showLoginSuccesAlert() {
+        vmUiState.update { it.copy(alertSuccessIsVisible = true) }
+    }
+
+    fun hideLoginSuccessAlert() {
+        vmUiState.update { it.copy(alertSuccessIsVisible = false) }
     }
 
     private fun setError() {
