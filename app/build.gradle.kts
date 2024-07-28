@@ -88,6 +88,6 @@ dependencies {
     implementation(libs.image.loader.coil)
 
     //- tests
-    implementation(libs.test.mockito)
-    implementation(libs.test.coroutines)
+    testImplementation(libs.test.mockito)
+    testImplementation(libs.test.coroutines)
 }
