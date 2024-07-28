@@ -47,6 +47,7 @@ fun LoginScreen(
     LoginContent(
         goToWelcome = goToWelcome,
         enableLoginButton = uiState.enableLoginButton,
+        isBusy = uiState.isBusy,
         onWriteUser = { newUser ->
             viewModel.setUser(newUser)
             viewModel.checkInputsAndEnableButton()
@@ -60,7 +61,7 @@ fun LoginScreen(
         },
     )
 
-    if(uiState.alertIsVisible){
+    if (uiState.alertIsVisible) {
         NativeAlertDialog(
             onDismissRequest = { viewModel.hideLoginAlert() },
             message = R.string.login_error_curp,
@@ -73,6 +74,7 @@ fun LoginScreen(
 private fun LoginContent(
     goToWelcome: () -> Unit = {},
     enableLoginButton: Boolean,
+    isBusy: Boolean,
     onClickLoginButton: () -> Unit,
     onWriteUser: (String) -> Unit,
     onWritePass: (String) -> Unit,
@@ -150,6 +152,7 @@ private fun LoginContent(
                     ButtonFilled(
                         text = R.string.login_button,
                         enableButton = enableLoginButton,
+                        isBusy = isBusy,
                         onClick = { onClickLoginButton() }
                     )
 
@@ -189,6 +192,7 @@ private fun LoginContentPreview() {
         enableLoginButton = true,
         onWritePass = { t -> },
         onWriteUser = { t -> },
-        onClickLoginButton = {}
+        onClickLoginButton = {},
+        isBusy = true
     )
 }

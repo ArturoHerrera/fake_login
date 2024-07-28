@@ -28,6 +28,45 @@ class LoginViewModel @Inject constructor(
         vmUiState.value
     )
 
+    fun login() {
+        viewModelScope.launch {
+            val currentState = vmUiState.value
+            val user = currentState.user
+            val pass = currentState.pass
+
+            if (user.isNullOrEmpty() || pass.isNullOrEmpty()) {
+                // Previously we validated that the username and password
+                // were not null or empty, so this validation is a mere formality.
+                setError()
+                setIsBusy(false)
+            } else {
+                loginUseCase
+                    .invoke(LoginRequest(user, pass))
+                    .collect { result ->
+                        when (result) {
+                            is DataState.Error -> {
+                                setError()
+                                setIsBusy(false)
+
+                                //Dummie error validation to copy error case from original app.
+                                showLoginAlert()
+                            }
+
+                            DataState.Loading -> setIsBusy(true)
+
+                            is DataState.Success -> {
+                                setUserDetails(result.data)
+                                setIsBusy(false)
+                            }
+
+                            else -> Unit
+                        }
+                    }
+            }
+
+        }
+    }
+
     fun setUser(newUser: String?) {
         newUser?.let { safeNewUser ->
             if (safeNewUser.isNotEmpty()) {
@@ -59,44 +98,6 @@ class LoginViewModel @Inject constructor(
         vmUiState.update { it.copy(alertIsVisible = false) }
     }
 
-    fun login() {
-        viewModelScope.launch {
-            val currentState = vmUiState.value
-            val user = currentState.user
-            val pass = currentState.pass
-
-            if (user.isNullOrEmpty() || pass.isNullOrEmpty()) {
-                // Previously we validated that the username and password
-                // were not null or empty, so this validation is a mere formality.
-                setError()
-            } else {
-                loginUseCase
-                    .invoke(LoginRequest(user, pass))
-                    .collect { result ->
-                        when (result) {
-                            is DataState.Error -> {
-                                setError()
-                                setIsBusy(false)
-
-                                //Dummie error validation to copy error case from original app.
-                                showLoginAlert()
-                            }
-
-                            DataState.Loading -> setIsBusy(true)
-
-                            is DataState.Success -> {
-                               setUserDetails(result.data)
-                                setIsBusy(false)
-                            }
-
-                            else -> Unit
-                        }
-                    }
-            }
-
-        }
-    }
-
     private fun setUserDetails(userDetails: UserDetails) {
         vmUiState.update { it.copy(userDetails = userDetails) }
     }
@@ -105,5 +106,7 @@ class LoginViewModel @Inject constructor(
         //TODO Add error validation, maybe check error types by exceptions.
     }
 
-    private fun setIsBusy(isBusy: Boolean) {}
+    private fun setIsBusy(isBusy: Boolean) {
+        vmUiState.update { it.copy(isBusy = isBusy) }
+    }
 }
