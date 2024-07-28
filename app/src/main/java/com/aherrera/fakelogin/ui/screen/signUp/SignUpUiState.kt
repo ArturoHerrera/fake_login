@@ -1,6 +1,6 @@
-package com.aherrera.fakelogin.ui.screen.login
+package com.aherrera.fakelogin.ui.screen.signUp
 
-data class LoginUiState(
+data class SignUpUiState(
     val user: String? = null,
     val pass: String? = null,
     val enableLoginButton: Boolean = false,

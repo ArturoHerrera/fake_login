@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aherrera.fakelogin.R
 import com.aherrera.fakelogin.ui.components.FormTopBar
+import com.aherrera.fakelogin.ui.components.NativeAlertDialog
 import com.aherrera.fakelogin.ui.components.atoms.ButtonFilled
 import com.aherrera.fakelogin.ui.components.atoms.FormTextField
 import com.aherrera.fakelogin.ui.theme.BaubapLightBackground
@@ -54,17 +55,30 @@ fun LoginScreen(
         onWritePass = { newPass ->
             viewModel.setPass(newPass)
             viewModel.checkInputsAndEnableButton()
-        }
+        },
+        onClickLoginButton = {
+            viewModel.showLoginAlert()
+        },
     )
+
+    if(uiState.alertIsVisible){
+        NativeAlertDialog(
+            onDismissRequest = { viewModel.hideLoginAlert() },
+            message = R.string.login_error_curp,
+            confirmButtonAction = { viewModel.hideLoginAlert() }
+        )
+    }
 }
 
 @Composable
 private fun LoginContent(
     goToWelcome: () -> Unit = {},
     enableLoginButton: Boolean,
+    onClickLoginButton: () -> Unit,
     onWriteUser: (String) -> Unit,
     onWritePass: (String) -> Unit,
 ) {
+
     Scaffold(
         topBar = {
             FormTopBar(onClick = { goToWelcome() })
@@ -137,7 +151,7 @@ private fun LoginContent(
                     ButtonFilled(
                         text = R.string.login_button,
                         enableButton = enableLoginButton,
-                        onClick = {}
+                        onClick = { onClickLoginButton() }
                     )
 
                     Row(
@@ -176,5 +190,6 @@ private fun LoginContentPreview() {
         enableLoginButton = true,
         onWritePass = { t -> },
         onWriteUser = { t -> },
+        onClickLoginButton = {}
     )
 }

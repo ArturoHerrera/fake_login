@@ -1,4 +1,4 @@
-package com.aherrera.fakelogin.ui.screen.login
+package com.aherrera.fakelogin.ui.screen.signUp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class SignUpViewModel @Inject constructor(
 
 ) : ViewModel() {
 
     private val vmUiState =
-        MutableStateFlow(LoginUiState())
+        MutableStateFlow(SignUpUiState())
 
     val uiState = vmUiState.stateIn(
         viewModelScope,

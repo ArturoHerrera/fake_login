@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,8 +27,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.aherrera.fakelogin.R
 import com.aherrera.fakelogin.ui.components.FormTopBar
+import com.aherrera.fakelogin.ui.components.NativeAlertDialog
 import com.aherrera.fakelogin.ui.components.atoms.ButtonFilled
 import com.aherrera.fakelogin.ui.components.atoms.FormTextField
 import com.aherrera.fakelogin.ui.theme.BaubapLightBackground
@@ -35,16 +38,45 @@ import com.aherrera.fakelogin.ui.theme.BaubapPrimaryPurlple
 
 @Composable
 fun SignUpScreen(
-    goToWelcome: () -> Unit
+    goToWelcome: () -> Unit,
+    viewModel: SignUpViewModel = hiltViewModel()
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+
     BackHandler(true) { goToWelcome() }
 
-    SignUpContent(goToWelcome)
+    SignUpContent(
+        goToWelcome = goToWelcome,
+        enableLoginButton = uiState.enableLoginButton,
+        onWriteUser = { newUser ->
+            viewModel.setUser(newUser)
+            viewModel.checkInputsAndEnableButton()
+        },
+        onWritePass = { newPass ->
+            viewModel.setPass(newPass)
+            viewModel.checkInputsAndEnableButton()
+        },
+        onClickLoginButton = {
+            viewModel.showLoginAlert()
+        },
+    )
+
+    if (uiState.alertIsVisible) {
+        NativeAlertDialog(
+            onDismissRequest = { viewModel.hideLoginAlert() },
+            message = R.string.sign_up_error_curp,
+            confirmButtonAction = { viewModel.hideLoginAlert() }
+        )
+    }
 }
 
 @Composable
 private fun SignUpContent(
     goToWelcome: () -> Unit = {},
+    enableLoginButton: Boolean,
+    onClickLoginButton: () -> Unit,
+    onWriteUser: (String) -> Unit,
+    onWritePass: (String) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -74,6 +106,7 @@ private fun SignUpContent(
                     label = R.string.sign_up_text_field_phone
                 ) { newText ->
                     phoneText = newText
+                    onWriteUser(phoneText.text)
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -84,6 +117,7 @@ private fun SignUpContent(
                     label = R.string.sign_up_text_field_curp
                 ) { newText ->
                     curpText = newText
+                    onWritePass(curpText.text)
                 }
 
                 Row(
@@ -113,9 +147,11 @@ private fun SignUpContent(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Bottom
                 ) {
-                    ButtonFilled(text = R.string.sign_up_create_account_button) {
-
-                    }
+                    ButtonFilled(
+                        text = R.string.sign_up_create_account_button,
+                        enableButton = enableLoginButton,
+                        onClick = { onClickLoginButton() }
+                    )
 
                     Row(
                         modifier = Modifier
@@ -148,5 +184,11 @@ private fun SignUpContent(
 @Composable
 @Preview
 private fun SignUpContentPreview() {
-    SignUpContent()
+    SignUpContent(
+        goToWelcome = {},
+        enableLoginButton = true,
+        onWritePass = { t -> },
+        onWriteUser = { t -> },
+        onClickLoginButton = {}
+    )
 }

@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">FakeLogin</string>
 
+    <!-- Commons -->
+    <string name="accept_button">Aceptar</string>
+
     <!-- Welcome Screen -->
     <string name="welcome_tittle">¡Bienvenido!</string>
     <string name="welcome_message">Alcanza tus metas financieras hoy mismo</string>
@@ -16,6 +19,8 @@
     <string name="sign_up_create_account_button">Crea tu cuenta</string>
     <string name="sign_up_already_account">¿Ya tienes una cuenta?</string>
     <string name="sign_up_login_button">Inicia sesión</string>
+    <string name="sign_up_error_curp">La CURP ingresada no existe en la base de dato oficial, verifica que tus datos sean correctos.</string>
+
 
     <!-- Login Screen -->
     <string name="login_tittle">Inicia sesión</string>
@@ -26,5 +31,6 @@
     <string name="login_button">Inicia sesión</string>
     <string name="login_not_account">¿No tienes cuenta?</string>
     <string name="login_create_account_button">Crea nueva cuenta</string>
+    <string name="login_error_curp">El CURP no está registrado o no coincide con una cuenta de Baubap, por favor ingresa el CURP con el que te registraste en Baubap.</string>
 
 </resources>
