@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.aherrera.fakelogin.R
 import com.aherrera.fakelogin.ui.components.FormTopBar
 import com.aherrera.fakelogin.ui.components.atoms.ButtonFilled
@@ -35,16 +37,33 @@ import com.aherrera.fakelogin.ui.theme.BaubapPrimaryPurlple
 
 @Composable
 fun LoginScreen(
-    goToWelcome: () -> Unit
+    goToWelcome: () -> Unit,
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+
     BackHandler(true) { goToWelcome() }
 
-    LoginContent(goToWelcome)
+    LoginContent(
+        goToWelcome = goToWelcome,
+        enableLoginButton = uiState.enableLoginButton,
+        onWriteUser = { newUser ->
+            viewModel.setUser(newUser)
+            viewModel.checkInputsAndEnableButton()
+        },
+        onWritePass = { newPass ->
+            viewModel.setPass(newPass)
+            viewModel.checkInputsAndEnableButton()
+        }
+    )
 }
 
 @Composable
 private fun LoginContent(
     goToWelcome: () -> Unit = {},
+    enableLoginButton: Boolean,
+    onWriteUser: (String) -> Unit,
+    onWritePass: (String) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -74,6 +93,7 @@ private fun LoginContent(
                     label = R.string.login_text_field_enter_curp_or_phone
                 ) { newText ->
                     userCredential = newText
+                    onWriteUser(userCredential.text)
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -84,6 +104,7 @@ private fun LoginContent(
                     label = R.string.login_text_field_enter_nip
                 ) { newText ->
                     userNip = newText
+                    onWritePass(userNip.text)
                 }
 
                 Row(
@@ -113,9 +134,11 @@ private fun LoginContent(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Bottom
                 ) {
-                    ButtonFilled(text = R.string.login_button) {
-
-                    }
+                    ButtonFilled(
+                        text = R.string.login_button,
+                        enableButton = enableLoginButton,
+                        onClick = {}
+                    )
 
                     Row(
                         modifier = Modifier
@@ -147,6 +170,11 @@ private fun LoginContent(
 
 @Composable
 @Preview
-private fun SLoginContentPreview() {
-    LoginContent()
+private fun LoginContentPreview() {
+    LoginContent(
+        goToWelcome = {},
+        enableLoginButton = true,
+        onWritePass = { t -> },
+        onWriteUser = { t -> },
+    )
 }

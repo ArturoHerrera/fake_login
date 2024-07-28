@@ -22,6 +22,7 @@ fun ButtonFilled(
     buttonColor: Color = BaubapPrimaryPurlple,
     textColor: Color = Color.White,
     @StringRes text: Int = R.string.welcome_sign_up_button,
+    enableButton: Boolean = true,
     onClick: () -> Unit,
 ) {
     Button(
@@ -34,6 +35,7 @@ fun ButtonFilled(
             Text(text = stringResource(id = text))
         },
         shape = RoundedCornerShape(12.dp),
+        enabled = enableButton,
         modifier = Modifier
             .fillMaxWidth()
             .then(modifier)
