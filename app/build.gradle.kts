@@ -20,6 +20,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "DUMMY_MAIN_URL", "\"https://dummyjson.com/\"")
     }
 
     buildTypes {
@@ -40,6 +41,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.12"
@@ -70,6 +72,15 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    //- Hilt DI
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+    //- Client HTTP
+    implementation(libs.retrofitClient)
+    implementation(libs.gson.converter.factory)
+    implementation(libs.okhttp.interceptor.login)
+
+    //- Serializer
+    implementation(libs.gson)
 }
